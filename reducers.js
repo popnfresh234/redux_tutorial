@@ -6,19 +6,15 @@ import {
   TOGGLE_TODO,
 } from './actions';
 
-const initialState = {
-  visibilityFilter: VisibilityFilters.SHOW_ALL,
-  todos: [],
-};
-
 const { SHOW_ALL } = VisibilityFilters;
 
 function todos( state = [], action ) {
   switch ( action.type ) {
     case ADD_TODO:
       return [
-        ...state.todos,
+        ...state,
         {
+          id: action.id,
           text: action.text,
           completed: false,
         },
@@ -55,3 +51,17 @@ const todoApp = combineReducers( {
 
 export default todoApp;
 
+// Example app state
+// {
+//     visibilityFilter: 'SHOW_ALL',
+//     todos: [
+//       {
+//         text: 'Consider using Redux',
+//         completed: true
+//       },
+//       {
+//         text: 'Keep all state in a single tree',
+//         completed: false
+//       }
+//     ]
+//   }
